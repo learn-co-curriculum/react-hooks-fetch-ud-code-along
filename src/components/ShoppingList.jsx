@@ -20,6 +20,9 @@ function ShoppingList() {
       .catch(error => console.log(error))
   }, []);
 
+  function handleDeleteItem(deletedItem) {
+    console.log("In ShoppingCart:", deletedItem);
+  }
   function handleAddItem(newItem) {
     setItems([...items, newItem]);
   }
