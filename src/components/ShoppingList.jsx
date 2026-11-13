@@ -20,19 +20,12 @@ function ShoppingList() {
       .catch(error => console.log(error))
   }, []);
 
-  function handleAddItem(newItem) {
-    setItems([...items, newItem]);
+  // add this callback function
+  function handleDeleteItem(deletedItem) {
+    console.log("In ShoppingCart:", deletedItem);
   }
 
-  function handleCategoryChange(category) {
-    setSelectedCategory(category);
-  }
-
-  const itemsToDisplay = items.filter((item) => {
-    if (selectedCategory === "All") return true;
-
-    return item.category === selectedCategory;
-  });
+  // ...rest of component
 
   return (
     <div className="ShoppingList">
@@ -42,8 +35,14 @@ function ShoppingList() {
         onCategoryChange={handleCategoryChange}
       />
       <ul className="Items">
-        {itemsToDisplay.map((item) => (
-          <Item key={item.id} item={item} />
+        {/* pass it as a prop to Item */}
+        {itemsToDisplay.map(item => (
+          <Item
+            key={item.id}
+            item={item}
+            onUpdateItem={handleUpdateItem}
+            onDeleteItem={handleDeleteItem}
+          />
         ))}
       </ul>
     </div>
